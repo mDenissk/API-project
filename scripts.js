@@ -62,7 +62,13 @@ function showAnswer()
 {
     playersGuesses.disabled="disabled";
 
-    totalTags.innerText = "There were total: " + tagsFromAzure.length + " tags.";
+    let line = "There were total: " + tagsFromAzure.length + " tags. \n "
+    for(let i in tagsFromAzure)
+    {
+        line = line + tagsFromAzure[i] + " "
+    }
+    totalTags.innerText = line;
+
     let guesses = playersGuesses.value.toLowerCase().split(" ").filter(onlyUnique);
     let n = countGuesses(guesses,tagsFromAzure);
 
@@ -91,6 +97,8 @@ function timeToGuess(tags,link)
 
 function nextRound(event)
 {
+    let imageLink = "https://picsum.photos/400/300/?image=" + Math.floor(Math.random() * 1000);
+
     var subscriptionKey = "774fca6e4c7a429db5c705125a74aec4";
     var uriBase = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze";
     // Request parameters.
@@ -110,14 +118,16 @@ function nextRound(event)
         },
         type: "POST",
         // Request body.
-        data: '{"url": ' + '"' + inputImageLink.value + '"}',
+       // data: '{"url": ' + '"' + inputImageLink.value + '"}',
+       data: '{"url": ' + '"' + imageLink + '"}',
     })
 
     .done(function(data) {
         pb2.sendJson({
             status: "prepComplete", 
             tags: data.description.tags, 
-            imageLink: inputImageLink.value 
+            //imageLink: inputImageLink.value 
+            imageLink: imageLink,
         });
     })
 
