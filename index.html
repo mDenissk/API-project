@@ -1,0 +1,34 @@
+<html>
+
+<head>
+	<title>Guess the tags</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script> 
+	<script src="pb2_client.js"></script>
+</head>
+
+<body>
+	<div class="column left">
+		<p>Enter the URL of an image then press "Try" button.</p>
+		<input type="text" id="inputImageLink" class="userInput" value="http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg"/>
+		<button id="tryGuess">Try</button>
+		<p>Try to guess tags.</p>
+		<input type="text" id="playersGuesses" class="userInput"/>
+		<br>
+		<img id="guessedPicture" />
+		<p id="totalTags"></p>
+	</div>
+
+	<div class="column right">
+		<p>Enter nickname: </p>
+		<input type="text" id="inputNickname"/>
+		<p class="scoreHeader">SCORE STATS:</p>
+		<p id="scoreText"></p>
+	</div>
+
+	<script src="scripts.js"></script>
+
+</body>
+
+</html>
